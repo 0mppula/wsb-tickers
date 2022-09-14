@@ -5,14 +5,29 @@
 	margin: 0;
 	box-sizing: border-box;
 	font-family: 'Anek Gurmukhi', sans-serif;
-	color: var(--primary-text-color);
+}
+
+body {
 	background-color: var(--bg-color);
+	color: var(--primary-text-color);
 }
 
 :root {
-	--bg-color: #281833;
-	--bg-color-light: hsl(276, 50%, 35%);
+	--bg-color: #151218;
+	--bg-color-light: #232440;
+	--bg-color-hover: hsl(276, 50%, 80%);
 	--primary-text-color: #f9f9f9;
-	--success: #00D962;
-	--danger: #F16375;
+	--success: #00d962;
+	--danger: hsl(0, 84%, 78%);
 }
+
+/* REACT DATEPICKER STYLES */
+.react-datepicker__month-container,
+.react-datepicker__header  {
+	background-color: var(--primary-text-color);
+	
+}
+.react-datepicker__day--selected {
+	background-color: #232440;
+}
+/* END REACT DATEPICKER STYLES */

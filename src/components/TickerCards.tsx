@@ -1,8 +1,9 @@
 import { FC, useEffect, useState } from 'react';
 import axios from 'axios';
 
-import { TickersCardContainer, TickerCardToolsContainer } from './TickerCardElements';
+import { TickerCardsContainer } from './TickerCardElements';
 import TickerCard from './TickerCard';
+import TickerCardTools from './TickerCardTools';
 
 export type tickerType = {
 	no_of_comments: number; // "no_of_comments": 49,
@@ -28,18 +29,16 @@ const TickerCards: FC = () => {
 	}, []);
 
 	return (
-		<TickersCardContainer>
-			<TickerCardToolsContainer>
-				<div>BULLISH</div>
-				<div>BEARISH</div>
-				<div>DATEPICKER</div>
-			</TickerCardToolsContainer>
+		<>
+			<TickerCardTools />
 
-			{tickers &&
-				tickers?.map((ticker, index): any => (
-					<TickerCard key={`${ticker}-${index}`} ticker={ticker} index={index} />
-				))}
-		</TickersCardContainer>
+			<TickerCardsContainer>
+				{tickers &&
+					tickers?.map((ticker, index): any => (
+						<TickerCard key={`${ticker}-${index}`} ticker={ticker} index={index} />
+					))}
+			</TickerCardsContainer>
+		</>
 	);
 };
 
