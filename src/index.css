@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Anek+Gurmukhi:wght@100;200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 * {
 	margin: 0;
@@ -12,10 +13,30 @@ body {
 	color: var(--primary-text-color);
 }
 
+input[type='text'] {
+	font-family: 'Roboto Mono', monospace;
+	border-radius: 4px;
+	padding: 0.125rem 0.5rem;
+	font-size: 1.25rem;
+	text-transform: uppercase;
+	width: 100%;
+	color: var(--bg-color);
+	background-color: var(--primary-text-color);
+	border: none;
+}
+
+input:focus {
+	outline: solid 4px #c0c0c0;
+}
+
+::placeholder {
+	color: #c0c0c0;
+	opacity: 1;
+}
+
 :root {
 	--bg-color: #151218;
-	--bg-color-light: #232440;
-	--bg-color-hover: hsl(276, 50%, 80%);
+	--bg-color-light: #2d2e52;
 	--primary-text-color: #f9f9f9;
 	--success: #00d962;
 	--danger: hsl(0, 84%, 78%);
@@ -23,9 +44,8 @@ body {
 
 /* REACT DATEPICKER STYLES */
 .react-datepicker__month-container,
-.react-datepicker__header  {
+.react-datepicker__header {
 	background-color: var(--primary-text-color);
-	
 }
 .react-datepicker__day--selected {
 	background-color: #232440;

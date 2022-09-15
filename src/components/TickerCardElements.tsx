@@ -17,6 +17,7 @@ export const TickerCardToolsContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 	margin-bottom: 1rem;
+	row-gap: 0.5rem;
 	width: 100%;
 
 	div.tool-item {
@@ -27,19 +28,44 @@ export const TickerCardToolsContainer = styled.div`
 		font-size: 1.25rem;
 		cursor: pointer;
 		transition: 0.3s all;
-		padding: 0.5rem 1rem 0.25rem;
+		padding: 0.6875rem 1rem 0.1875rem;
 		border-radius: 4px;
 		user-select: none;
-		margin-left: 0.5rem;
+		margin-right: 0.5rem;
+
+		&.input {
+			width: 100px;
+			padding: 0 !important;
+			position: relative;
+
+			@media only screen and (max-width: 496px) {
+				width: 100%;
+				margin: 0;
+			}
+		}
 
 		&:hover {
 			background-color: var(--bg-color-light);
 		}
 
 		span {
-			width: 145px;
+			width: 100px;
 		}
 	}
+`;
+
+type InputIconContainerProps = {
+	query: boolean;
+	onClick: React.MouseEventHandler<HTMLDivElement>;
+};
+
+export const InputIconContainer = styled.div<InputIconContainerProps>`
+	user-select: none;
+	color: #c0c0c0;
+	position: absolute;
+	display: flex;
+	top: 5px;
+	right: 6px;
 `;
 
 export const TickerCardContainer = styled.div`

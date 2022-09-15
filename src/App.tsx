@@ -17,7 +17,7 @@ const Container = styled.div`
 const Header = styled.h1`
 	font-size: 3rem;
 	text-transform: uppercase;
-	margin-bottom: 2rem;
+	margin-bottom: 1rem;
 `;
 
 const App: FC = () => {
