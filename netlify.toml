@@ -1,0 +1,6 @@
+ [[redirects]]
+  from = "api/v1/apps/*"
+  to = "https://tradestie.com/api/v1/apps/"
+  status = 200
+  force = true
+  headers = {Access-Control-Allow-Origin = "*"}
