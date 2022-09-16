@@ -1,2 +1,2 @@
-/api/* https://tradestie.com/:splat 200
+/api/* https://tradestie.com/api/:splat 200
 /* /index.html 200
