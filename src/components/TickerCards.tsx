@@ -13,7 +13,11 @@ export type tickerType = {
 	ticker: string; // "ticker": "BBBY"
 };
 
-const TickerCards: FC = () => {
+interface TickerCardsProps {
+	refresh: number;
+}
+
+const TickerCards: FC<TickerCardsProps> = ({ refresh }) => {
 	const [tickers, setTickers] = useState<tickerType[] | null>(null);
 	const [filteredTickers, setFilteredTickers] = useState<tickerType[] | null>(tickers);
 	const [loading, setLoading] = useState<Boolean>(false);
@@ -23,27 +27,39 @@ const TickerCards: FC = () => {
 	useEffect(() => {
 		setLoading(true);
 		const getData = async () => {
-			// 'https://tradestie.com/api/v1/apps/reddit?date=2022-04-03'
-			const formattedDate = moment(date).format('YYYY-MM-DD');
-			const url = `/api/v1/apps/reddit?date=${formattedDate}`;
-			const response = await axios.get(url);
+			try {
+				// 'https://tradestie.com/api/v1/apps/reddit?date=2022-04-03'
+				const formattedDate = moment(date).format('YYYY-MM-DD');
+				const url = `/api/v1/apps/reddit?date=${formattedDate}`;
+				const response = await axios.get(url);
 
-			setLoading(false);
-			// The API's limit is 10 calls / min if exceeded response status will be 429
-			if (response.status === 429) {
-				setTooFast(true);
-				return;
+				setTooFast(false);
+				setTickers(response.data);
+				setFilteredTickers(response.data);
+			} catch ({ request: { status } = null }) {
+				// The API's limit is 10 calls / min if exceeded response status will be 429
+				if (status === 429) {
+					setTooFast(true);
+					console.log("The API's limit is 10 calls");
+				}
 			}
-
-			setTickers(response.data);
-			setFilteredTickers(response.data);
-			setTooFast(false);
+			setLoading(false);
 		};
 
 		getData();
 	}, [date]);
 
-	if (loading) return <p>LOADING...</p>;
+	useEffect(() => {
+		setDate(new Date());
+	}, [refresh]);
+
+	if (loading || tooFast)
+		return (
+			<p>
+				{(loading && 'LOADING...') ||
+					(tooFast && "Slow down the API's limit is 10 calls per minute!")}
+			</p>
+		);
 
 	return (
 		<>

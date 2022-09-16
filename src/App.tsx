@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import styled from 'styled-components';
 
 import TickerCards from './components/TickerCards';
@@ -17,14 +17,50 @@ const Container = styled.div`
 const Header = styled.h1`
 	font-size: 3rem;
 	text-transform: uppercase;
-	margin-bottom: 1rem;
+	position: relative;
+
+	span {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 105%;
+		transform: translate(2.5%, 0);
+		height: 42px;
+		cursor: pointer;
+	}
+`;
+
+const Footer = styled.footer`
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	padding: 1rem;
+	gap: 0.25rem;
+
+	a {
+		color: #c0c0c0;
+	}
+
+	span {
+		color: #c0c0c0;
+	}
 `;
 
 const App: FC = () => {
+	const [refresh, setRefresh] = useState<number>(0);
 	return (
 		<Container>
-			<Header>WSB-Tickers</Header>
-			<TickerCards />
+			<Header>
+				<span onClick={() => setRefresh(refresh + 1)} /> WSB-Tickers
+			</Header>
+			<TickerCards refresh={refresh} />
+
+			<Footer>
+				<span>Developed By:</span>
+				<a href="https://github.com/0mppula" target="_blank" rel="noopener noreferrer">
+					Omar Kraidié
+				</a>
+			</Footer>
 		</Container>
 	);
 };
