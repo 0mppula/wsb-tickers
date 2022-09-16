@@ -38,7 +38,7 @@ const TickerCardTools: FC<TickerCardToolsProps> = ({
 		} else {
 			setFilteredTickers(tickers);
 		}
-	}, [query]);
+	}, [query, setFilteredTickers]);
 
 	const handleTickerSort = () => {
 		let newTickers: tickerType[] = [...tickers];
