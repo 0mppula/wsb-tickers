@@ -1,5 +1,6 @@
 {
 	"proxy": "https://tradestie.com",
+	"homepage": ".",
 	"name": "wsb-tickers",
 	"version": "0.1.0",
 	"engines": {

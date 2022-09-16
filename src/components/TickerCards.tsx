@@ -30,7 +30,7 @@ const TickerCards: FC<TickerCardsProps> = ({ refresh }) => {
 			try {
 				// 'https://tradestie.com/api/v1/apps/reddit?date=2022-04-03'
 				const formattedDate = moment(date).format('YYYY-MM-DD');
-				const url = `https://tradestie.com/api/v1/apps/reddit?date=${formattedDate}`;
+				const url = `/api/v1/apps/reddit?date=${formattedDate}`;
 				const response = await axios.get(url);
 
 				setTooFast(false);
