@@ -61,6 +61,8 @@ const TickerCards: FC<TickerCardsProps> = ({ refresh }) => {
 			</p>
 		);
 
+	console.log(filteredTickers);
+
 	return (
 		<>
 			{tickers && filteredTickers && (
@@ -75,9 +77,14 @@ const TickerCards: FC<TickerCardsProps> = ({ refresh }) => {
 					/>
 
 					<TickerCardsContainer>
-						{filteredTickers?.map((ticker, index): any => (
-							<TickerCard key={`${ticker}-${index}`} ticker={ticker} index={index} />
-						))}
+						{filteredTickers?.length > 0 &&
+							filteredTickers?.map((ticker, index): any => (
+								<TickerCard
+									key={`${ticker}-${index}`}
+									ticker={ticker}
+									index={index}
+								/>
+							))}
 					</TickerCardsContainer>
 				</>
 			)}
