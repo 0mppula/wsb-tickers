@@ -3,7 +3,10 @@ import { FC } from 'react';
 import { TickerCardContainer } from './TickerCardElements';
 import { tickerType } from './TickerCards';
 
-type TickerCardProps = { ticker: tickerType; index: number };
+interface TickerCardProps {
+	ticker: tickerType;
+	index: number;
+}
 
 const TickerCard: FC<TickerCardProps> = ({ ticker, index }) => {
 	return (

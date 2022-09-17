@@ -2,16 +2,16 @@ import { FC, useEffect, useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 
-import { TickerCardsContainer } from './TickerCardElements';
+import { LoadingContainer, TickerCardsContainer } from './TickerCardElements';
 import TickerCard from './TickerCard';
 import TickerCardTools from './TickerCardTools';
 
-export type tickerType = {
+export interface tickerType {
 	no_of_comments: number; // "no_of_comments": 49,
 	sentiment: string; // "sentiment": "Bearish",
 	sentiment_score: number; // "sentiment_score": -0.392,
 	ticker: string; // "ticker": "BBBY"
-};
+}
 
 interface TickerCardsProps {
 	refresh: number;
@@ -55,13 +55,11 @@ const TickerCards: FC<TickerCardsProps> = ({ refresh }) => {
 
 	if (loading || tooFast)
 		return (
-			<p>
+			<LoadingContainer>
 				{(loading && 'LOADING...') ||
-					(tooFast && "Slow down the API's limit is 10 calls per minute!")}
-			</p>
+					(tooFast && "Slow down the API's limit is 10 calls per minute! (refresh the page after 1 minute)")}
+			</LoadingContainer>
 		);
-
-	console.log(filteredTickers);
 
 	return (
 		<>

@@ -6,14 +6,14 @@ import { FaChevronDown, FaChevronUp, FaCalendarAlt, FaSearch, FaTimes } from 're
 import { InputIconContainer, TickerCardToolsContainer } from './TickerCardElements';
 import { tickerType } from './TickerCards';
 
-type TickerCardToolsProps = {
+interface TickerCardToolsProps {
 	date: Date;
 	setDate: Function;
 	tickers: tickerType[];
 	setTickers: Function;
 	filteredTickers: tickerType[];
 	setFilteredTickers: Function;
-};
+}
 
 const TickerCardTools: FC<TickerCardToolsProps> = ({
 	date,
@@ -99,7 +99,6 @@ const TickerCardTools: FC<TickerCardToolsProps> = ({
 	};
 
 	const handleInputContainerClick = () => {
-		console.log('first');
 		if (query) {
 			setQuery('');
 		}

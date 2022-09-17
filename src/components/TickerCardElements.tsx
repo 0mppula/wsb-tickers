@@ -54,10 +54,10 @@ export const TickerCardToolsContainer = styled.div`
 	}
 `;
 
-type InputIconContainerProps = {
+interface InputIconContainerProps {
 	query: boolean;
 	onClick: React.MouseEventHandler<HTMLDivElement>;
-};
+}
 
 export const InputIconContainer = styled.div<InputIconContainerProps>`
 	user-select: none;
@@ -66,6 +66,10 @@ export const InputIconContainer = styled.div<InputIconContainerProps>`
 	display: flex;
 	top: 5px;
 	right: 6px;
+`;
+
+export const LoadingContainer = styled.p`
+	padding: 3rem 1rem;
 `;
 
 export const TickerCardContainer = styled.div`
