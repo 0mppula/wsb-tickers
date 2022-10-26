@@ -83,7 +83,7 @@ export const TickerCardContainer = styled.div`
 	padding: 1rem;
 	color: var(--primary-text-color);
 
-	@media only screen and (max-width: 992px) {
+	@media only screen and (max-width: 1040px) {
 		width: calc(50% - (1rem * (1 / 2)));
 	}
 	@media only screen and (max-width: 576px) {

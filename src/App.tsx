@@ -9,7 +9,7 @@ const Container = styled.div`
 	display: flex;
 	min-height: 100vh;
 	width: min(1200px, 93vw);
-	margin: 0 auto;
+	margin: 0 auto 6rem;
 	flex-direction: column;
 	align-items: center;
 `;
@@ -31,10 +31,11 @@ const Header = styled.h1`
 `;
 
 const Footer = styled.footer`
+	background-color: var(--bg-color-light);
 	display: flex;
 	justify-content: center;
 	width: 100%;
-	padding: 1rem;
+	padding: 5rem 0 2rem 0;
 	gap: 0.25rem;
 
 	a {
@@ -49,11 +50,13 @@ const Footer = styled.footer`
 const App: FC = () => {
 	const [refresh, setRefresh] = useState<number>(0);
 	return (
-		<Container>
-			<Header>
-				<span onClick={() => setRefresh(refresh + 1)} /> WSB-Tickers
-			</Header>
-			<TickerCards refresh={refresh} />
+		<>
+			<Container>
+				<Header>
+					<span onClick={() => setRefresh(refresh + 1)} /> WSB-Tickers
+				</Header>
+				<TickerCards refresh={refresh} />
+			</Container>
 
 			<Footer>
 				<span>Developed By:</span>
@@ -61,7 +64,7 @@ const App: FC = () => {
 					Omar Kraidié
 				</a>
 			</Footer>
-		</Container>
+		</>
 	);
 };
 
