@@ -36,7 +36,6 @@ const Footer = styled.footer`
 	justify-content: center;
 	width: 100%;
 	padding: 5rem 0 2rem 0;
-	gap: 0.25rem;
 
 	a {
 		color: #c0c0c0;
@@ -59,10 +58,12 @@ const App: FC = () => {
 			</Container>
 
 			<Footer>
-				<span>Developed By:</span>
-				<a href="https://github.com/0mppula" target="_blank" rel="noopener noreferrer">
-					Omar Kraidié
-				</a>
+				<span>
+					Developed by{' '}
+					<a href="https://www.omarkraidie.com" target="_blank" rel="noopener noreferrer">
+						Omar Kraidié
+					</a>
+				</span>
 			</Footer>
 		</>
 	);
