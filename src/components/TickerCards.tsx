@@ -24,6 +24,8 @@ const TickerCards: FC<TickerCardsProps> = ({ refresh }) => {
 	const [date, setDate] = useState<Date>(new Date());
 	const [tooFast, setTooFast] = useState<Boolean>(false);
 
+	const dateIsAfterApiShutdown = moment(moment(date).format('YYYY-MM-DD')).isAfter('2023-10-14');
+
 	useEffect(() => {
 		setLoading(true);
 		const getData = async () => {
@@ -36,7 +38,7 @@ const TickerCards: FC<TickerCardsProps> = ({ refresh }) => {
 				setTooFast(false);
 				setTickers(response.data);
 				setFilteredTickers(response.data);
-			} catch ({ request: { status } = null }) {
+			} catch ({ request: { status } = null }: any) {
 				// The API's limit is 10 calls / min if exceeded response status will be 429
 				if (status === 429) {
 					setTooFast(true);
@@ -57,7 +59,8 @@ const TickerCards: FC<TickerCardsProps> = ({ refresh }) => {
 		return (
 			<LoadingContainer>
 				{(loading && 'LOADING...') ||
-					(tooFast && "Slow down the API's limit is 10 calls per minute! (refresh the page after 1 minute)")}
+					(tooFast &&
+						"Slow down the API's limit is 10 calls per minute! (refresh the page after 1 minute)")}
 			</LoadingContainer>
 		);
 
@@ -75,14 +78,22 @@ const TickerCards: FC<TickerCardsProps> = ({ refresh }) => {
 					/>
 
 					<TickerCardsContainer>
-						{filteredTickers?.length > 0 &&
+						{filteredTickers?.length > 0 ? (
 							filteredTickers?.map((ticker, index): any => (
 								<TickerCard
 									key={`${ticker}-${index}`}
 									ticker={ticker}
 									index={index}
 								/>
-							))}
+							))
+						) : (
+							<span style={{ padding: '1rem' }}>
+								{dateIsAfterApiShutdown
+									? `The API that powers this app is app doesn't return any sentiment data after
+										${moment('2023-10-14').format('LL')}. 😢`
+									: 'No sentiment data found for this date.'}
+							</span>
+						)}
 					</TickerCardsContainer>
 				</>
 			)}
