@@ -1,9 +1,9 @@
-import { FC, useEffect, useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import { FC, useEffect, useState } from 'react';
 
-import { LoadingContainer, TickerCardsContainer } from './TickerCardElements';
 import TickerCard from './TickerCard';
+import { LoadingContainer, TickerCardsContainer } from './TickerCardElements';
 import TickerCardTools from './TickerCardTools';
 
 export interface tickerType {
@@ -21,18 +21,20 @@ const TickerCards: FC<TickerCardsProps> = ({ refresh }) => {
 	const [tickers, setTickers] = useState<tickerType[] | null>(null);
 	const [filteredTickers, setFilteredTickers] = useState<tickerType[] | null>(tickers);
 	const [loading, setLoading] = useState<Boolean>(false);
-	const [date, setDate] = useState<Date>(new Date());
+	const [date, setDate] = useState<Date>(new Date('2023-10-14'));
 	const [tooFast, setTooFast] = useState<Boolean>(false);
 
 	const dateIsAfterApiShutdown = moment(moment(date).format('YYYY-MM-DD')).isAfter('2023-10-14');
 
 	useEffect(() => {
 		setLoading(true);
+
 		const getData = async () => {
 			try {
 				// 'https://tradestie.com/api/v1/apps/reddit?date=2022-04-03'
 				const formattedDate = moment(date).format('YYYY-MM-DD');
 				const url = `/api/v1/apps/reddit?date=${formattedDate}`;
+
 				const response = await axios.get(url);
 
 				setTooFast(false);
@@ -52,7 +54,9 @@ const TickerCards: FC<TickerCardsProps> = ({ refresh }) => {
 	}, [date]);
 
 	useEffect(() => {
-		setDate(new Date());
+		if (refresh > 0) {
+			setDate(new Date('2023-10-14'));
+		}
 	}, [refresh]);
 
 	if (loading || tooFast)
